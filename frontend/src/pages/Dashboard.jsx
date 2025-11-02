@@ -384,10 +384,11 @@ const Dashboard = ({ view = 'my-drive' }) => {
 
   // Folder navigation handlers
   const handleFolderClick = async (folder) => {
-    if (currentView !== 'my-drive') return; // Only allow navigation in My Drive view
-
-    setCurrentFolder(folder.id);
-    setFolderPath([...folderPath, { id: folder.id, name: folder.name }]);
+    // Allow navigation in My Drive view
+    if (currentView === 'my-drive') {
+      setCurrentFolder(folder.id);
+      setFolderPath([...folderPath, { id: folder.id, name: folder.name }]);
+    }
   };
 
   const handleBreadcrumbClick = (index) => {
@@ -485,12 +486,26 @@ const Dashboard = ({ view = 'my-drive' }) => {
 
   const getFileIcon = (fileName, isFolder) => {
     if (isFolder) return <Folder size={20} className="file-icon folder-icon" />;
-    const ext = fileName.split('.').pop().toLowerCase();
-    if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) {
+    const ext = fileName.split('.').pop()?.toLowerCase() || '';
+    // Images
+    if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'bmp', 'ico'].includes(ext)) {
       return <File size={20} className="file-icon image-icon" />;
     }
-    if (['doc', 'docx', 'txt'].includes(ext)) {
+    // PDFs
+    if (ext === 'pdf') {
+      return <FileText size={20} className="file-icon pdf-icon" />;
+    }
+    // Documents
+    if (['doc', 'docx', 'txt', 'rtf', 'odt'].includes(ext)) {
       return <FileText size={20} className="file-icon doc-icon" />;
+    }
+    // Spreadsheets
+    if (['xls', 'xlsx', 'ods', 'csv'].includes(ext)) {
+      return <FileText size={20} className="file-icon sheet-icon" />;
+    }
+    // Presentations
+    if (['ppt', 'pptx', 'odp'].includes(ext)) {
+      return <FileText size={20} className="file-icon slides-icon" />;
     }
     return <File size={20} className="file-icon" />;
   };
@@ -1128,10 +1143,10 @@ const Dashboard = ({ view = 'my-drive' }) => {
                     );
                   })()}
 
-                  {/* Regular rendering for other views */}
-                  {currentView !== 'recent' && displayFolders.length > 0 && (
+                  {/* Regular rendering for other views - merged files and folders */}
+                  {currentView !== 'recent' && (displayFolders.length > 0 || displayFiles.length > 0) && (
                     <div className="file-section">
-                      <div className="section-header">Folders</div>
+                      {/* Render folders first */}
                       {displayFolders.map((folder) => (
                         <div
                           key={folder.id}
@@ -1142,6 +1157,8 @@ const Dashboard = ({ view = 'my-drive' }) => {
                           onDragEnter={(e) => handleDragEnterFolder(e, folder)}
                           onDragLeave={handleDragLeaveFolder}
                           onDrop={(e) => handleDropOnFolder(e, folder)}
+                          onClick={() => handleFolderClick(folder)}
+                          onDoubleClick={() => handleFolderClick(folder)}
                           onContextMenu={(e) => handleContextMenu(e, folder, 'folder')}
                           style={{
                             cursor: 'pointer',
@@ -1149,7 +1166,7 @@ const Dashboard = ({ view = 'my-drive' }) => {
                             transition: 'background-color 0.2s'
                           }}
                         >
-                          <div className="file-info" onClick={() => handleFolderClick(folder)} onDoubleClick={() => handleFolderClick(folder)}>
+                          <div className="file-info">
                             {getFileIcon(folder.name, true)}
                             <span className="file-name">{folder.name}</span>
                           </div>
@@ -1200,12 +1217,7 @@ const Dashboard = ({ view = 'my-drive' }) => {
                           </div>
                         </div>
                       ))}
-                    </div>
-                  )}
-
-                  {currentView !== 'recent' && displayFiles.length > 0 && (
-                    <div className="file-section">
-                      {displayFolders.length > 0 && <div className="section-header">Files</div>}
+                      {/* Then render files */}
                       {displayFiles.map((file) => (
                         <div
                           key={file.id}
@@ -1216,7 +1228,7 @@ const Dashboard = ({ view = 'my-drive' }) => {
                           onContextMenu={(e) => handleContextMenu(e, file, 'file')}
                           style={{ cursor: 'pointer' }}
                         >
-                          <div className="file-info" onClick={(e) => e.stopPropagation()}>
+                          <div className="file-info">
                             {getFileIcon(file.name, false)}
                             <span className="file-name">{file.name}</span>
                           </div>
