@@ -43,8 +43,8 @@ This project can be easily set up and run using Docker Compose. This will start 
 
 For quick testing, you can use the following dummy account:
 
-*   **Email:** `dummy@example.com`
-*   **Password:** `dummy`
+*   **Email:** `tst@g`
+*   **Password:** `shrikant`
 
 ---
 
