@@ -224,7 +224,7 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	log.Printf("🚀 Server starting on http://localhost%s", addr)
 	log.Printf("📁 Storage path: %s", storagePath)
-	log.Printf("🔒 CORS enabled for: http://localhost:5173")
+	log.Printf("🔒 CORS enabled for: http://localhost:1573")
 
 	if err := http.ListenAndServe(addr, r); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
