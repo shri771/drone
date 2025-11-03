@@ -2,6 +2,47 @@
 
 ## Scaler Hackathon Project
 
+## 🚀 Getting Started with Docker Compose
+
+This project can be easily set up and run using Docker Compose. This will start the backend API, the PostgreSQL database, and the React frontend.
+
+### Prerequisites
+
+*   Docker and Docker Compose installed on your system.
+
+### Steps
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-repo/gdrive.git
+    cd gdrive
+    ```
+
+2.  **Start the application:**
+    ```bash
+    docker compose up -d --build
+    ```
+    This command will:
+    *   Build the Docker images for the backend API and the PostgreSQL database.
+    *   Start the PostgreSQL database container.
+    *   Run database migrations to set up the schema.
+    *   Load initial data (including a dummy user).
+    *   Start the backend API container.
+    *   Start the React frontend development server.
+
+3.  **Access the application:**
+    *   **Frontend:** Open your web browser and navigate to `http://localhost:5173`
+    *   **Backend API:** The API will be running on `http://localhost:1030`
+
+### Dummy Account
+
+For quick testing, you can use the following dummy account:
+
+*   **Email:** `dummy@example.com`
+*   **Password:** `dummy`
+
+---
+
 A full-stack Google Drive clone with **Go REST API** + **React Frontend** + **PostgreSQL**
 
 ![Tech Stack](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
