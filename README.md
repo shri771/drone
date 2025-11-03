@@ -1,3 +1,8 @@
+A full-stack Google Drive clone with **Go REST API** + **React Frontend** + **PostgreSQL**
+
+![Tech Stack](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 # Team Code Raiders - Google Drive Clone
 
 ## Scaler Hackathon Project
@@ -14,7 +19,7 @@ This project can be easily set up and run using Docker Compose. This will start 
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-repo/gdrive.git
+    git https://github.com/shri771/gdrive
     cd gdrive
     ```
 
@@ -43,11 +48,6 @@ For quick testing, you can use the following dummy account:
 
 ---
 
-A full-stack Google Drive clone with **Go REST API** + **React Frontend** + **PostgreSQL**
-
-![Tech Stack](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ---
 
