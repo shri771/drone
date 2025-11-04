@@ -36,7 +36,7 @@ This project can be easily set up and run using Docker Compose. This will start 
     *   Start the React frontend development server.
 
 3.  **Access the application:**
-    *   **Frontend:** Open your web browser and navigate to `http://localhost:5173`
+    *   **Frontend:** Open your web browser and navigate to `http://localhost:1573`
     *   **Backend API:** The API will be running on `http://localhost:1030`
 
 ### Dummy Account
